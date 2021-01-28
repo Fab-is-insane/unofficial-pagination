@@ -26,6 +26,7 @@ const paginationEmbed = async (msg, pages, emojiList = ['⏪', '⏩'], timeout =
 	reactionCollector.on('end', () => {
 		if (!curPage.deleted) {
 			curPage.reactions.removeAll()
+			curPage.edit('This message is now inactive!')
 		}
 	});
 	return curPage;
