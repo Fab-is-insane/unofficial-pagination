@@ -6,7 +6,7 @@ const paginationEmbed = async (msg, pages, emojiList = ['⏪', '⏩'], timeout =
 	const curPage = await msg.channel.send(pages[page].setFooter(`Page ${page + 1} / ${pages.length}`));
 	for (const emoji of emojiList) await curPage.react(emoji);
 	const reactionCollector = curPage.createReactionCollector(
-		(reaction, user) => emojiList.includes(reaction.emoji.name) && !user.bot,
+		(reaction, user) => emojiList.includes(reaction.emoji.name) && !user.bot && (msg.author.id === user.id),
 		{ time: timeout }
 	);
 	reactionCollector.on('collect', reaction => {
